@@ -10,7 +10,7 @@ TARGET_NO_BOOTLOADER := true
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6592
-TARGET_BOARD_PLATFORM_GPU := mali-450mp
+#TARGET_BOARD_PLATFORM_GPU := mali-450
 
 TARGET_ARCH := arm
 TARGET_CPU_ABI := armeabi-v7a
@@ -34,9 +34,23 @@ TARGET_PREBUILT_KERNEL := device/lenovo/a808t/kernel
 
 
 #CWM Recovery
-TARGET_RECOVERY_INITRC := device/lenovo/a808t/rootdir/etc/init.recovery.a808t.rc
-TARGET_RECOVERY_FSTAB := device/lenovo/a808t/rootdir/etc/recovery.fstab
+#TARGET_RECOVERY_INITRC := device/lenovo/a808t/rootdir/etc/init.recovery.a808t.rc
+TARGET_RECOVERY_FSTAB := device/lenovo/a808t/rootdir/etc/cwm_recovery.fstab
 TARGET_PREBUILT_RECOVERY_KERNEL := device/lenovo/a808t/kernel
+
+#Make Recovery
+#TOOLS_DIR := device/lenovo/a808t/tools
+#RECOVERY_ROOT_DIR := out/target/product/a808t/recovery/root
+#BOARD_CUSTOM_BOOTIMG_MK := device/lenovo/a808t/mkbootimg.mk
+
+#Common Recovery
+RECOVERY_FSTAB_VERSION := 2
+
+#Cwm Recovery
+RECOVERY_VARIANT := philz
+BOARD_RECOVERY_MTK := true
+#BOARD_USE_MTK_LAYOUT := true
+#BOARD_MTK_BOOT_LABEL := /recovery
 
 #BOARD_HAS_MTK := true
 
@@ -49,12 +63,11 @@ TARGET_PREBUILT_RECOVERY_KERNEL := device/lenovo/a808t/kernel
 #MTK_UBOOT_DEVICE_SIZE := 393216
 
 #Font
-#BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"font_cn_28x28.h\"
-BORAD_UI_CHINESE := true
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"fontcn30_18x48.h\"
 DEVICE_RESOLUTION := 720x1280
 TARGET_SCREEN_WIDTH := 720
 TARGET_SCREEN_HEIGHT := 1280
+#BORAD_UI_CHINESE := true
 
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
@@ -62,30 +75,35 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_stora
 # LCD
 TARGET_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
 TARGET_MAX_BRIGHTNESS := 255
-#TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888″
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888″
 
 # NO misc
 # BOARD_HAS_NO_MISC_PARTITION := true
 
-#/data/media/
-RECOVERY_SDCARD_ON_DATA:= true
-#BOARD_HAS_NO_REAL_SDCARD:= true
-
 #ext4
-TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_LARGE_FILESYSTEM := true
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
 
 # NO select
 BOARD_HAS_NO_SELECT_BUTTON := true
-
 BOARD_HAS_SLOW_STORAGE := true
-#修复双清缓慢，非必需
+
+#touch
+BOARD_RECOVERY_SWIPE := true
+
+#recovery virtual key
+#RECOVERY_USE_VIRTUAL_KEY := true
+
+#quick wipe
 #BOARD_NO_SECURE_DISCARD := true
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 #KERNEL_EXFAT_MODULE_NAME := "exfat"
 
-# BOARD_RECOVERY_SWIPE := true
+#/data/media/
+#RECOVERY_SDCARD_ON_DATA:= true
+#BOARD_HAS_NO_REAL_SDCARD:= true
 
 # TWRP
 TW_FLASH_FROM_STORAGE := true

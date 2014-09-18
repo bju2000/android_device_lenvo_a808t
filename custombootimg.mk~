@@ -7,7 +7,7 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(recovery_ramdisk) \
 	cd ramdisk; \
 	cpio -idmv < ../ramdisk-recovery.cpio; \
 	cat res/ui.xml | sed -e "s/Team Win Recovery Project/TWRP For A808T By Mr_zeng/" > res/ui.xml.new; \
-#	mv res/ui.xml.new res/ui.xml; \
+	mv res/ui.xml.new res/ui.xml; \
 #	cat res/ui.xml | sed -e "s/Roboto-Condensed-40/Roboto-Condensed-30/" > res/ui.xml.new; \
 #	mv res/ui.xml.new res/ui.xml; \
 	cd ../../../../../
